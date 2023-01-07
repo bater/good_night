@@ -1,24 +1,20 @@
-# README
+# Good Night app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+We would like you to implement a "good night" application to let users track when do they go to bed and when do they wake up.
 
-Things you may want to cover:
+We require some RESTful APIs to achieve the following:
 
-* Ruby version
+1. Clock In operation, and return all clocked-in times, ordered by created time.
+2. Users can follow and unfollow other users.
+3. See the sleep records over the past week for their friends, ordered by the length of their sleep.
 
-* System dependencies
+Please implement the model, db migrations, and JSON API.
+You can assume that there are only two fields on the users "id" and "name".
 
-* Configuration
+You do not need to implement any user registration API.
 
-* Database creation
+Project spec:
 
-* Database initialization
+* Ruby version 3.2.0 & Rails 7.0.4
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I choose lastest verison bcause it's generally faster and securer.
