@@ -8,4 +8,8 @@ class User < ApplicationRecord
   def follow(friend)
     self.friendships = [friend]
   end
+
+  def unfollow(friend)
+    self.friendship_ids -= [friend.id]
+  end
 end
