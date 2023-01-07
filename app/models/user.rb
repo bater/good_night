@@ -4,4 +4,8 @@ class User < ApplicationRecord
   join_table:  :friendships,
   foreign_key: :user_id,
   association_foreign_key: :friend_user_id
+
+  def follow(friend)
+    self.friendships = [friend]
+  end
 end
