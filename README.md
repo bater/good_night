@@ -18,3 +18,5 @@ Project spec:
 * Ruby version 3.2.0 & Rails 7.0.4
 
 I choose lastest verison bcause it's generally faster and securer.
+
+* Install RSpec as test framework.
