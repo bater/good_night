@@ -40,10 +40,14 @@ class User < ApplicationRecord
   end
 
   def sum_duration
-    Sleep.past_week.where(user_id: friendship_ids).group(:user_id).order_by_length.sum(:duration)
+    all_sleep_from_friends.group(:user_id).order_by_length.sum(:duration)
   end
 
   def batch_sleep_data
-    Sleep.past_week.where(user_id: friendship_ids).order_by_created
+    all_sleep_from_friends.order_by_created
+  end
+
+  def all_sleep_from_friends
+    Sleep.past_week.where(user_id: friendship_ids)
   end
 end
