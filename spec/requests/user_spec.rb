@@ -1,13 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
+  let(:user) { FactoryBot.create(:user) }
+
   describe "GET /follow" do
-    let(:user) { FactoryBot.create(:user) }
     let(:friend) { FactoryBot.create(:user) }
     it "returns http success" do
       get "/user/#{user.id}/follow/#{friend.id}"
       expect(response).to have_http_status(:success)
     end
+    it "friend doesn't exist"
   end
 
   describe "GET /unfollow" do
@@ -17,5 +19,22 @@ RSpec.describe "Users", type: :request do
       get "/user/#{user.id}/unfollow/#{friend.id}"
       expect(response).to have_http_status(:success)
     end
+  end
+
+  describe "GET /go_to_bed" do
+    it "returns http success" do
+      get "/user/#{user.id}/go_to_bed"
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET /wake_up" do
+    it "returns http success" do
+      user.go_to_bed
+      get "/user/#{user.id}/wake_up"
+      expect(response).to have_http_status(:success)
+    end
+    it "user wake up twice"
+    it "user never sleep"
   end
 end
