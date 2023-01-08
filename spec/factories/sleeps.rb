@@ -1,7 +1,14 @@
 FactoryBot.define do
   factory :sleep do
     association :user
-    sequence(:wake_up) { |n| n.day.ago + 8.hours }
-    sequence(:created_at) { |n| n.day.ago }
+    wake_up { 1.day.ago + 8.hours }
+    created_at { 1.day.ago }
+    # 8 hours in seconds
+    duration { 28800 }
+
+    trait :six_hours do
+      wake_up { 1.day.ago + 6.hours }
+      duration { 21600 }
+    end
   end
 end

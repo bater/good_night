@@ -48,26 +48,33 @@ RSpec.describe User, type: :model do
   describe "#friends_record" do
     let(:user) { FactoryBot.create(:user, :has_friend) }
     let(:friend) { user.friendships.first }
+    before do
+      FactoryBot.create(:sleep, user_id: friend.id)
+    end
     it "can see friend's name" do
       expect(user.friends_record.first[:name]).to eq friend.name
     end
     context "can see friend's sleep record" do
-      before do
-        FactoryBot.create(:sleep, user_id: friend.id)
-      end
       it do
         expect(user.friends_record.first[:record].first[:bed]).to eq friend.sleep.last.bed.to_s
       end
     end
     context "can see friend's total sleep length of past week" do
-      before do
-        FactoryBot.create(:sleep, user_id: friend.id)
-      end
       it do
         expect(user.friends_record.first[:length]).to eq (8 * 60 * 60)
       end
     end
-    it "ordered by length of their friends"
+    context "ordered by length of their friends" do
+      let(:friend_sleep_less) { FactoryBot.create(:user, :with_6_hours_sleep) }
+      before do
+        user.follow(friend_sleep_less)
+      end
+      it "First firend sleep lenth bigger than last friend" do
+        expect(user.friends_record.size).to eq 2
+        expect(user.friends_record.first[:length]).to eq 28800
+        expect(user.friends_record.last[:length]).to eq 21600
+      end
+    end
     it "Only include past week sleep data"
   end
 end
