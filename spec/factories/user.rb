@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :user, class: User do
+    name { Faker::Name.name }
+
     trait :has_friend do
       after(:create) do |user|
         friend = create(:user)
