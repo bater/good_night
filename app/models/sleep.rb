@@ -1,6 +1,7 @@
 class Sleep < ApplicationRecord
   belongs_to :user
-  before_create do
-    self.bed = Time.now
+
+  def bed
+    created_at
   end
 end

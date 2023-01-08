@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_013232) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_08_020947) do
   create_table "friendships", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_user_id"
@@ -20,7 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_013232) do
 
   create_table "sleeps", force: :cascade do |t|
     t.integer "user_id"
-    t.datetime "bed"
     t.datetime "wake_up"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
