@@ -9,7 +9,14 @@ RSpec.describe "Users", type: :request do
       get "/user/#{user.id}/follow/#{friend.id}"
       expect(response).to have_http_status(:success)
     end
-    it "friend doesn't exist"
+    it "user doesn't exist (999)" do
+      get "/user/999/follow/#{friend.id}"
+      expect(response).to have_http_status(500)
+    end
+    it "friend doesn't exist (999)" do
+      get "/user/#{user.id}/follow/999"
+      expect(response).to have_http_status(500)
+    end
   end
 
   describe "GET /unfollow" do
