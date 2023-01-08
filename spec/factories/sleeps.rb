@@ -15,5 +15,10 @@ FactoryBot.define do
       wake_up { 2.weeks.ago + 8.hours }
       created_at { 2.weeks.ago }
     end
+
+    trait :just_in_bed do
+      wake_up { nil }
+      duration { 0 }
+    end
   end
 end
