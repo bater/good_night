@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def go_to_bed
     sleep.create
   end
+
+  def wake_up
+    sleep.last.update(wake_up: Time.now)
+  end
 end
