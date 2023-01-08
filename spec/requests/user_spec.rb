@@ -13,7 +13,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "GET /unfollow" do
-    let(:user) { FactoryBot.create(:user_has_friend) }
+    let(:user) { FactoryBot.create(:user, :has_friend) }
     let(:friend) { user.friendships.first }
     it "returns http success" do
       get "/user/#{user.id}/unfollow/#{friend.id}"

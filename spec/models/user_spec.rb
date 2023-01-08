@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "#unfollow" do
-    let(:user) { FactoryBot.create(:user_has_friend) }
+    let(:user) { FactoryBot.create(:user, :has_friend) }
     let(:friend) { user.friendships.first }
     before { user.unfollow(friend) }
     it "User can follow a friend" do
