@@ -28,11 +28,12 @@ class User < ApplicationRecord
 
   def friends_record
     friends_with_sum = sum_duration
-    pre_query = batch_sleep_data
+    all_friends_sleep = batch_sleep_data
+    filter_id = -> (id) { all_friends_sleep.select {|sleep| sleep.user_id == id} }
     User.find(friends_with_sum.keys).map do |friend|
       {
         name: friend.name,
-        record: pre_query.select {|sleep| sleep.user_id == friend.id}.map(&:record),
+        record: filter_id.call(friend.id).map(&:record),
         length: friends_with_sum[friend.id]
       }
     end
