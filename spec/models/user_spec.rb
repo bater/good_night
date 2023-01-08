@@ -75,6 +75,14 @@ RSpec.describe User, type: :model do
         expect(user.friends_record.last[:length]).to eq 21600
       end
     end
-    it "Only include past week sleep data"
+    context "Only include past week sleep data" do
+      before do
+        FactoryBot.create(:sleep, :past_2_weeks, user_id: friend.id)
+      end
+      it "Only include 1 sleep record" do
+        expect(user.friends_record.size).to eq 1
+        expect(user.friends_record.first[:length]).to eq 28800
+      end
+    end
   end
 end

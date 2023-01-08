@@ -10,5 +10,10 @@ FactoryBot.define do
       wake_up { 1.day.ago + 6.hours }
       duration { 21600 }
     end
+
+    trait :past_2_weeks do
+      wake_up { 2.weeks.ago + 8.hours }
+      created_at { 2.weeks.ago }
+    end
   end
 end
