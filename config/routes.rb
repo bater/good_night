@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  scope 'user/:id' do
+  resources :user, only: [] do
     get "follow/:friend_id", to: "user#follow"
     get "unfollow/:friend_id", to: "user#unfollow"
-    get "go_to_bed", to: "user#go_to_bed"
-    get "wake_up", to: "user#wake_up"
-    get "sleeps", to: "user#sleeps"
+    get :go_to_bed, :wake_up, :sleeps
   end
 end

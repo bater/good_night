@@ -29,7 +29,7 @@ class UserController < ApplicationController
   private
 
   def find_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
   end
 
   def find_friend
