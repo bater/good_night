@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_020947) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_08_064810) do
   create_table "friendships", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_020947) do
     t.datetime "wake_up"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "duration", default: 0
     t.index ["user_id"], name: "index_sleeps_on_user_id"
   end
 
