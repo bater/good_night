@@ -23,21 +23,11 @@ class User < ApplicationRecord
   end
 
   def sleeps
-    sleep.map do |s|
-      {
-        bed: s.bed.to_s,
-        wake_up: s.wake_up.to_s
-      }
-    end
+    sleep.map(&:record)
   end
 
   def sleeps_past_week
-    sleep.past_week.map do |s|
-      {
-        bed: s.bed.to_s,
-        wake_up: s.wake_up.to_s
-      }
-    end
+    sleep.past_week.map(&:record)
   end
 
   def friends_record

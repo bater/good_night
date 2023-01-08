@@ -9,6 +9,13 @@ class Sleep < ApplicationRecord
     created_at
   end
 
+  def record
+    {
+      bed: bed.to_s,
+      wake_up: wake_up.to_s
+    }
+  end
+
   private
 
   def count_duration_seconds
