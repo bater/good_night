@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  get "user/:id/follow/:friend_id", to: "user#follow"
-  get "user/:id/unfollow/:friend_id", to: "user#unfollow"
+  scope 'user/:id' do
+    get "follow/:friend_id", to: "user#follow"
+    get "unfollow/:friend_id", to: "user#unfollow"
+  end
 end
