@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   def wake_up
-    sleep.last.update(wake_up: Time.now)
+    sleep.last.update(wake_up: Time.now) if sleep.present?
   end
 
   def sleeps

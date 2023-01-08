@@ -36,6 +36,13 @@ RSpec.describe User, type: :model do
       user.wake_up
       expect(user.sleep.last.wake_up.to_s).to eq Time.parse("2023/1/2").to_s
     end
+    describe "user neven sleep" do
+      let(:user) { FactoryBot.create(:user) }
+      it "Do nothing" do
+        expect(user.wake_up).to be nil
+        expect(user.sleep.size).to be 0
+      end
+    end
   end
 
   describe "#sleeps" do
