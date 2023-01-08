@@ -100,13 +100,17 @@ RSpec.describe User, type: :model do
       user.follow(friend_a)
       user.follow(friend_b)
     end
-    describe "get all target sleep" do
+    describe "get all target sleeps with order" do
       it do
         sleep_1
         sleep_2
         sleep_3
         sleep_4
         expect(user.batch_sleep_data.size).to eq 4
+        expect(user.batch_sleep_data.first).to eq sleep_1
+        expect(user.batch_sleep_data.second).to eq sleep_2
+        expect(user.batch_sleep_data.third).to eq sleep_3
+        expect(user.batch_sleep_data.last).to eq sleep_4
       end
     end
   end
