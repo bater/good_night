@@ -4,7 +4,7 @@ class Sleep < ApplicationRecord
 
   scope :order_by_created, -> { order("created_at DESC") }
   scope :past_week, -> { where("created_at >= ?", 1.week.ago) }
-  scope :order_by_lenth, -> { order("sum_duration DESC") }
+  scope :order_by_length, -> { order("sum_duration DESC") }
 
   def bed
     created_at
