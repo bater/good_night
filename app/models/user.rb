@@ -7,11 +7,11 @@ class User < ApplicationRecord
   has_many :sleep
 
   def follow(friend)
-    self.friendships += [friend]
+    self.friendships << friend
   end
 
   def unfollow(friend)
-    self.friendships -= [friend]
+    self.friendships.delete(friend)
   end
 
   def go_to_bed
