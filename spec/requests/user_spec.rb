@@ -58,6 +58,7 @@ RSpec.describe "Users", type: :request do
     let(:user) { FactoryBot.create(:user, :has_friend) }
     it "returns friend data" do
       expect(json.first['name']).to eq(user.friendships.first.name)
+      expect(json.first.keys).to match_array(%w[name record length])
     end
     it "return http success" do
       expect(response).to have_http_status(:success)
