@@ -5,7 +5,7 @@ We would like you to implement a "good night" application to let users track whe
 We require some RESTful APIs to achieve the following:
 
 - [x] Clock In operation.
-- [ ] Return all clocked-in times, ordered by created time.
+- [x] Return all clocked-in times, ordered by created time.
 - [x] Users can follow and unfollow other users.
 - [ ] See the sleep records over the past week for their friends, ordered by the length of their sleep.
 
