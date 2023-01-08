@@ -28,16 +28,26 @@ class User < ApplicationRecord
 
   def friends_record
     friends_with_sum = sum_duration
+    all_friends_sleep = batch_sleep_data
+    filter_id = -> (id) { all_friends_sleep.select {|sleep| sleep.user_id == id} }
     User.find(friends_with_sum.keys).map do |friend|
       {
         name: friend.name,
-        record: friend.sleep.past_week.map(&:record),
+        record: filter_id.call(friend.id).map(&:record),
         length: friends_with_sum[friend.id]
       }
     end
   end
 
   def sum_duration
-    Sleep.past_week.where(user_id: friendship_ids).group(:user_id).order_by_length.sum(:duration)
+    all_sleep_from_friends.group(:user_id).order_by_length.sum(:duration)
+  end
+
+  def batch_sleep_data
+    all_sleep_from_friends.order_by_created
+  end
+
+  def all_sleep_from_friends
+    Sleep.past_week.where(user_id: friendship_ids)
   end
 end
