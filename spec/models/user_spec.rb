@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:user) { FactoryBot.create(:user) }
+
   describe "#follow" do
-    let(:user) { FactoryBot.create(:user) }
     let(:friend) { FactoryBot.create(:user) }
     before { user.follow(friend) }
     it "User can follow a friend" do
@@ -34,6 +35,13 @@ RSpec.describe User, type: :model do
       Timecop.travel(Time.local(2023, 1, 2))
       user.wake_up
       expect(user.sleep.last.wake_up.to_s).to eq Time.parse("2023/1/2").to_s
+    end
+  end
+
+  describe "#sleeps" do
+    let(:user) { FactoryBot.create(:user, :with_sleeps) }
+    it "order by created_at DESC" do
+      expect(user.sleeps.first[:bed]).to eq user.sleep.first.bed.to_s
     end
   end
 end

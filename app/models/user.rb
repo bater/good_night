@@ -21,4 +21,13 @@ class User < ApplicationRecord
   def wake_up
     sleep.last.update(wake_up: Time.now)
   end
+
+  def sleeps
+    sleep.map do |s|
+      {
+        bed: s.bed.to_s,
+        wake_up: s.wake_up.to_s
+      }
+    end
+  end
 end
