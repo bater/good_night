@@ -30,4 +30,23 @@ class User < ApplicationRecord
       }
     end
   end
+
+  def sleeps_past_week
+    sleep.past_week.map do |s|
+      {
+        bed: s.bed.to_s,
+        wake_up: s.wake_up.to_s
+      }
+    end
+  end
+
+  def friends_record
+    friendships.map do |friend|
+      {
+        name: friend.name,
+        record: friend.sleeps_past_week,
+        length: friend.sleep.past_week.sum(:duration)
+      }
+    end.sort_by{|f| f[:length]}.reverse
+  end
 end
