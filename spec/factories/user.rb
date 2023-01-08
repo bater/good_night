@@ -20,5 +20,11 @@ FactoryBot.define do
         create(:sleep, :six_hours, user_id: user.id)
       end
     end
+
+    trait :with_10_hours_sleep do
+      after(:create) do |user|
+        create(:sleep, :ten_hours, user_id: user.id)
+      end
+    end
   end
 end

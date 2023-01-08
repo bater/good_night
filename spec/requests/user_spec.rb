@@ -65,11 +65,16 @@ RSpec.describe "Users", type: :request do
 
   describe "GET /friends" do
     before do
+      user.follow(friend1)
+      user.follow(friend2)
       get "/user/#{user.id}/friends"
     end
-    let(:user) { FactoryBot.create(:user, :has_friend) }
+    let(:friend1) { FactoryBot.create(:user, :with_6_hours_sleep) }
+    let(:friend2) { FactoryBot.create(:user, :with_10_hours_sleep) }
     it "returns friend data" do
-      expect(json.first['name']).to eq(user.friendships.first.name)
+      expect(json.first['name']).to eq(friend2.name)
+      expect(json.first['length']).to eq(36000)
+      expect(json.last['length']).to eq(21600)
       expect(json.first.keys).to match_array(%w[name record length])
     end
     it "return http success" do

@@ -2,8 +2,9 @@ class Sleep < ApplicationRecord
   belongs_to :user
   before_save :count_duration_seconds, if: :wake_up_changed?
 
-  default_scope { order("created_at DESC") }
+  scope :order_by_created, -> { order("created_at DESC") }
   scope :past_week, -> { where("created_at >= ?", 1.week.ago) }
+  scope :order_by_lenth, -> { order("sum_duration DESC") }
 
   def bed
     created_at
