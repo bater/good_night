@@ -88,4 +88,26 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "#batch_sleep_data" do
+    let(:friend_a) { FactoryBot.create(:user) }
+    let(:friend_b) { FactoryBot.create(:user) }
+    let(:sleep_1) { FactoryBot.create(:sleep, created_at: 1.day.ago, wake_up: 1.day.ago + 8.hours, user_id: friend_a.id) }
+    let(:sleep_2) { FactoryBot.create(:sleep, created_at: 2.days.ago, wake_up: 2.days.ago + 8.hours, user_id: friend_b.id) }
+    let(:sleep_3) { FactoryBot.create(:sleep, created_at: 3.days.ago, wake_up: 3.days.ago + 8.hours, user_id: friend_a.id) }
+    let(:sleep_4) { FactoryBot.create(:sleep, created_at: 4.days.ago, wake_up: 4.days.ago + 8.hours, user_id: friend_b.id) }
+    before do
+      user.follow(friend_a)
+      user.follow(friend_b)
+    end
+    describe "get all target sleep" do
+      it do
+        sleep_1
+        sleep_2
+        sleep_3
+        sleep_4
+        expect(user.batch_sleep_data.size).to eq 4
+      end
+    end
+  end
 end
