@@ -50,4 +50,17 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe "GET /friends" do
+    before do
+      get "/user/#{user.id}/friends"
+    end
+    let(:user) { FactoryBot.create(:user, :has_friend) }
+    it "returns friend data" do
+      expect(json.first['name']).to eq(user.friendships.first.name)
+    end
+    it "return http success" do
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

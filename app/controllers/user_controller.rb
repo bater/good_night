@@ -26,6 +26,10 @@ class UserController < ApplicationController
     render json: @user.sleeps
   end
 
+  def friends
+    render json: @user.friends_record
+  end
+
   private
 
   def find_user
