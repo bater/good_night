@@ -18,4 +18,15 @@ RSpec.describe User, type: :model do
       expect(user.friendship_ids).not_to include friend.id
     end
   end
+
+  describe "#go_to_bed" do
+    before do
+      Timecop.freeze(Time.local(2023, 1, 1))
+    end
+    let(:user) { FactoryBot.create(:user) }
+    it "user go to bed" do
+      user.go_to_bed
+      expect(user.sleep.last.bed).to eq Time.parse("2023/1/1")
+    end
+  end
 end

@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def unfollow(friend)
     self.friendship_ids -= [friend.id]
   end
+
+  def go_to_bed
+    sleep.create
+  end
 end
