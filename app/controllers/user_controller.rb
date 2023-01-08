@@ -22,6 +22,10 @@ class UserController < ApplicationController
     render status: :no_content
   end
 
+  def sleeps
+    render json: @user.sleeps
+  end
+
   private
 
   def find_user

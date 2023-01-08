@@ -37,4 +37,17 @@ RSpec.describe "Users", type: :request do
     it "user wake up twice"
     it "user never sleep"
   end
+
+  describe "GET /sleeps" do
+    before do
+      get "/user/#{user.id}/sleeps"
+    end
+    let(:user) { FactoryBot.create(:user, :with_sleeps) }
+    it "returns sleeps data" do
+      expect(json.size).to eq(3)
+    end
+    it "return http success" do
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
