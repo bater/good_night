@@ -54,15 +54,11 @@ RSpec.describe User, type: :model do
     it "can see friend's name" do
       expect(user.friends_record.first[:name]).to eq friend.name
     end
-    context "can see friend's sleep record" do
-      it do
-        expect(user.friends_record.first[:record].first[:bed]).to eq friend.sleep.last.bed.to_s
-      end
+    it "can see friend's sleep record" do
+      expect(user.friends_record.first[:record].first[:bed]).to eq friend.sleep.last.bed.to_s
     end
-    context "can see friend's total sleep length of past week" do
-      it do
-        expect(user.friends_record.first[:length]).to eq (8 * 60 * 60)
-      end
+    it "can see friend's total sleep length of past week" do
+      expect(user.friends_record.first[:length]).to eq (8 * 60 * 60)
     end
     context "ordered by length of their friends" do
       let(:friend_sleep_less) { FactoryBot.create(:user, :with_6_hours_sleep) }
