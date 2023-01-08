@@ -20,10 +20,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "#go_to_bed" do
-    before do
-      Timecop.freeze(Time.local(2023, 1, 1))
-    end
-    let(:user) { FactoryBot.create(:user) }
+    include_context 'time freeze'
     it "user go to bed" do
       user.go_to_bed
       expect(user.sleep.last.bed.to_s).to eq Time.parse("2023/1/1").to_s
@@ -31,10 +28,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "#wake_up" do
-    before do
-      Timecop.freeze(Time.local(2023, 1, 1))
-    end
-    let(:user) { FactoryBot.create(:user) }
+    include_context 'time freeze'
     it "user wake up" do
       user.go_to_bed
       Timecop.travel(Time.local(2023, 1, 2))
