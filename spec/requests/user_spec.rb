@@ -41,7 +41,6 @@ RSpec.describe "Users", type: :request do
       get "/user/#{user.id}/wake_up"
       expect(response).to have_http_status(:success)
     end
-    it "user wake up twice"
     describe "user never sleep" do
       let(:user) { FactoryBot.create(:user) }
       it do
