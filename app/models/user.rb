@@ -22,7 +22,7 @@ class User < ApplicationRecord
     sleep.last.update(wake_up: Time.now) if sleep.present?
   end
 
-  def sleeps
+  def personal_sleeps
     sleep.order_by_created.map(&:record)
   end
 

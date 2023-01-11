@@ -45,10 +45,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#sleeps" do
+  describe "#personal_sleeps" do
     let(:user) { FactoryBot.create(:user, :with_sleeps) }
     it "order by created_at DESC" do
-      expect(user.sleeps.first[:bed]).to eq user.sleep.first.bed.to_s
+      expect(user.personal_sleeps.first[:bed]).to eq user.sleep.first.bed.to_s
     end
   end
 

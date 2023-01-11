@@ -23,7 +23,7 @@ class UserController < ApplicationController
   end
 
   def sleeps
-    render json: @user.sleeps
+    render json: @user.personal_sleeps
   end
 
   def friends
