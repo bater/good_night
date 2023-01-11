@@ -68,13 +68,15 @@ RSpec.describe User, type: :model do
       expect(user.friends_record.first[:length]).to eq (8 * 60 * 60)
     end
     context "ordered by length of their friends" do
+      let(:friend_sleep_more) { FactoryBot.create(:user, :with_10_hours_sleep) }
       let(:friend_sleep_less) { FactoryBot.create(:user, :with_6_hours_sleep) }
       before do
+        user.follow(friend_sleep_more)
         user.follow(friend_sleep_less)
       end
       it "First firend sleep lenth bigger than last friend" do
-        expect(user.friends_record.size).to eq 2
-        expect(user.friends_record.first[:length]).to eq 28800
+        expect(user.friends_record.size).to eq 3
+        expect(user.friends_record.first[:length]).to eq 36000
         expect(user.friends_record.last[:length]).to eq 21600
       end
     end
