@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
     include_context 'time freeze'
     it "user go to bed" do
       user.go_to_bed
-      expect(user.sleep.last.bed.to_s).to eq Time.parse("2023/1/1").to_s
+      expect(user.sleeps.last.bed.to_s).to eq Time.parse("2023/1/1").to_s
     end
   end
 
@@ -34,13 +34,13 @@ RSpec.describe User, type: :model do
       user.go_to_bed
       Timecop.travel(Time.local(2023, 1, 2))
       user.wake_up
-      expect(user.sleep.last.wake_up.to_s).to eq Time.parse("2023/1/2").to_s
+      expect(user.sleeps.last.wake_up.to_s).to eq Time.parse("2023/1/2").to_s
     end
     describe "user neven sleep" do
       let(:user) { FactoryBot.create(:user) }
       it "Do nothing" do
         expect(user.wake_up).to be nil
-        expect(user.sleep.size).to be 0
+        expect(user.sleeps.size).to be 0
       end
     end
   end
@@ -48,7 +48,7 @@ RSpec.describe User, type: :model do
   describe "#personal_sleeps" do
     let(:user) { FactoryBot.create(:user, :with_sleeps) }
     it "order by created_at DESC" do
-      expect(user.personal_sleeps.first[:bed]).to eq user.sleep.first.bed.to_s
+      expect(user.personal_sleeps.first[:bed]).to eq user.sleeps.first.bed.to_s
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe User, type: :model do
       expect(user.friends_record.first[:name]).to eq friend.name
     end
     it "can see friend's sleep record" do
-      expect(user.friends_record.first[:record].first[:bed]).to eq friend.sleep.last.bed.to_s
+      expect(user.friends_record.first[:record].first[:bed]).to eq friend.sleeps.last.bed.to_s
     end
     it "can see friend's total sleep length of past week" do
       expect(user.friends_record.first[:length]).to eq (8 * 60 * 60)

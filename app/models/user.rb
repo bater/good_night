@@ -4,7 +4,7 @@ class User < ApplicationRecord
   join_table:  :friendships,
   foreign_key: :user_id,
   association_foreign_key: :friend_user_id
-  has_many :sleep
+  has_many :sleeps
 
   def follow(friend)
     self.friendships << friend
@@ -15,15 +15,15 @@ class User < ApplicationRecord
   end
 
   def go_to_bed
-    sleep.create
+    sleeps.create
   end
 
   def wake_up
-    sleep.last.update(wake_up: Time.now) if sleep.present?
+    sleeps.last.update(wake_up: Time.now) if sleeps.present?
   end
 
   def personal_sleeps
-    sleep.order_by_created.map(&:record)
+    sleeps.order_by_created.map(&:record)
   end
 
   def friends_record
