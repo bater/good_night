@@ -39,6 +39,8 @@ class User < ApplicationRecord
     end
   end
 
+  private
+
   def sum_duration
     all_sleep_from_friends.group(:user_id).order_by_length.sum(:duration)
   end

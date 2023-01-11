@@ -108,11 +108,11 @@ RSpec.describe User, type: :model do
         sleep_2
         sleep_3
         sleep_4
-        expect(user.batch_sleep_data.size).to eq 4
-        expect(user.batch_sleep_data.first).to eq sleep_1
-        expect(user.batch_sleep_data.second).to eq sleep_2
-        expect(user.batch_sleep_data.third).to eq sleep_3
-        expect(user.batch_sleep_data.last).to eq sleep_4
+        expect(user.send(:batch_sleep_data).size).to eq 4
+        expect(user.send(:batch_sleep_data).first).to eq sleep_1
+        expect(user.send(:batch_sleep_data).second).to eq sleep_2
+        expect(user.send(:batch_sleep_data).third).to eq sleep_3
+        expect(user.send(:batch_sleep_data).last).to eq sleep_4
       end
     end
   end
