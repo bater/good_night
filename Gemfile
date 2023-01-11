@@ -43,6 +43,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "timecop"
   gem "faker"
+  gem 'benchmark-ips', '>= 2.0'
 end
 
 group :development do
