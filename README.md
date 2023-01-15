@@ -4,9 +4,10 @@ We would like you to implement a "good night" application to let users track whe
 
 We require some RESTful APIs to achieve the following:
 - [x] Clock In operation.
-> GET /user/:user_id/go_to_bed
-
-> GET /user/:user_id/wake_up
+    - [x] Go to bed.
+      > GET /user/:user_id/go_to_bed
+    - [x] Wake up.
+      > GET /user/:user_id/wake_up
 - [x] Return all clocked-in times, ordered by created time.
 > GET /user/:user_id/sleeps
 - [x] Users can follow and unfollow other users.
@@ -29,14 +30,17 @@ I choose lastest verison bcause it's generally faster and securer.
 
 * Install RSpec as test framework.
 
-## Demo flow:
-1. `git clone https://github.com/bater/good_night.git`
+## Installation
+1. Clone the repo from github.
+   ```sh
+   git clone https://github.com/bater/good_night.git
+   ```
 2. `cd good_night`
 3. `bundle install`, please confirm the local ruby and rails version.
 4. `rails db:migrate`
 5. `rails db:seed`
 6. `rails server`
-7. Visit browser `http://localhost:3000/user/1/seelps` for personal sleep record.
-8. Visit browser `http://localhost:3000/user/1/friends` for all frends record.
-9. Unfollow user 2 `http://localhost:3000/user/1/unfollow/2`.
-10. Follow user 2 `http://localhost:3000/user/1/follow/2`.
+7. Visit browser [http://localhost:3000/user/1/seelps](http://localhost:3000/user/1/seelps) for user 1 sleep records, ordered by created time.
+8. Visit browser [http://localhost:3000/user/1/friends](http://localhost:3000/user/1/friends) to see the sleep records over the past week for user's friends, ordered by the length of their sleep.
+9. Unfollow user 2 [http://localhost:3000/user/1/unfollow/2](http://localhost:3000/user/1/unfollow/2).
+10. Follow user 2 [http://localhost:3000/user/1/follow/2](http://localhost:3000/user/1/follow/2).
