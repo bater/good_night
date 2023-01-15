@@ -1,7 +1,7 @@
 module ApiException
   EXCEPTIONS = {
     #400
-    "BadRequest" => { status: 400, error_code: 40001, message: "User cannot follow themselves." },
+    "BadRequest" => { status: 400, error_code: 40001, message: "Business logic error" },
     #404
     "ActiveRecord::RecordNotFound" => { status: 404, error_code: 40401, message: "Cannot find record" },
   }

@@ -22,7 +22,7 @@ RSpec.describe "Users", type: :request do
     it 'user cannot add self as friend' do
       get "/user/#{user.id}/follow/#{user.id}"
       expect(response).to have_http_status(400)
-      expect(json['message']).to eq "User cannot follow themselves."
+      expect(json['detail']).to eq "User cannot follow themselves."
     end
     describe 'when add same friend twice, nothing happen' do
       let(:user) { FactoryBot.create(:user, :has_friend) }

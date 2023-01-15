@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :sleeps
 
   def follow(friend)
+    raise ApiException::BadRequest, "User cannot follow themselves." if self == friend
     self.friendships << friend if friendships.exclude?(friend)
   end
 
