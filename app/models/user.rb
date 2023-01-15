@@ -20,7 +20,8 @@ class User < ApplicationRecord
   end
 
   def wake_up
-    sleeps.last.update(wake_up: Time.now) if sleeps.present?
+    raise ActiveRecord::RecordNotFound, "User never sleep." if sleeps.size.zero?
+    sleeps.last.update(wake_up: Time.now)
   end
 
   def personal_sleeps

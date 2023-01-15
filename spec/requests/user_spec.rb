@@ -60,7 +60,8 @@ RSpec.describe "Users", type: :request do
       let(:user) { FactoryBot.create(:user) }
       it do
         get "/user/#{user.id}/wake_up"
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(404)
+        expect(json['detail']).to eq "User never sleep."
       end
     end
   end

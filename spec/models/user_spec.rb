@@ -43,9 +43,8 @@ RSpec.describe User, type: :model do
     end
     describe "user neven sleep" do
       let(:user) { FactoryBot.create(:user) }
-      it "Do nothing" do
-        expect(user.wake_up).to be nil
-        expect(user.sleeps.size).to be 0
+      it "raise 404 error" do
+        expect { user.wake_up }.to raise_error(ActiveRecord::RecordNotFound, "User never sleep.")
       end
     end
   end
