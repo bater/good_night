@@ -37,10 +37,9 @@ I choose lastest verison bcause it's generally faster and securer.
    ```
 2. `cd good_night`
 3. `bundle install`, please confirm the local ruby and rails version.
-4. `rails db:migrate`
-5. `rails db:seed`
-6. `rails server`
-7. Visit browser [http://localhost:3000/user/1/sleeps](http://localhost:3000/user/1/sleeps) for user 1 sleep records, ordered by created time.
-8. Visit browser [http://localhost:3000/user/1/friends](http://localhost:3000/user/1/friends) to see the sleep records over the past week for user's friends, ordered by the length of their sleep.
-9. Unfollow user 2 [http://localhost:3000/user/1/unfollow/2](http://localhost:3000/user/1/unfollow/2).
-10. Follow user 2 [http://localhost:3000/user/1/follow/2](http://localhost:3000/user/1/follow/2).
+4. `rails db:setup`, create tables and loads the seeds.
+5. `rails server`
+6. Visit browser [http://localhost:3000/user/1/sleeps](http://localhost:3000/user/1/sleeps) for user 1 sleep records, ordered by created time.
+7. Visit browser [http://localhost:3000/user/1/friends](http://localhost:3000/user/1/friends) to see the sleep records over the past week for user's friends, ordered by the length of their sleep.
+8. Unfollow user 2 [http://localhost:3000/user/1/unfollow/2](http://localhost:3000/user/1/unfollow/2).
+9. Follow user 2 [http://localhost:3000/user/1/follow/2](http://localhost:3000/user/1/follow/2).
