@@ -11,11 +11,11 @@ RSpec.describe "Users", type: :request do
     end
     it "user doesn't exist (999)" do
       get "/user/999/follow/#{friend.id}"
-      expect(response).to have_http_status(500)
+      expect(response).to have_http_status(404)
     end
     it "friend doesn't exist (999)" do
       get "/user/#{user.id}/follow/999"
-      expect(response).to have_http_status(500)
+      expect(response).to have_http_status(404)
     end
   end
 
