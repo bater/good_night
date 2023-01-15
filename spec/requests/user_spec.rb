@@ -12,12 +12,18 @@ RSpec.describe "Users", type: :request do
     it "user doesn't exist (999)" do
       get "/user/999/follow/#{friend.id}"
       expect(response).to have_http_status(404)
+      expect(json['detail']).to eq "Couldn't find User with 'id'=999"
     end
     it "friend doesn't exist (999)" do
       get "/user/#{user.id}/follow/999"
       expect(response).to have_http_status(404)
+      expect(json['detail']).to eq "Couldn't find User with 'id'=999"
     end
-    describe 'user cannot add self as friend'
+    it 'user cannot add self as friend' do
+      get "/user/#{user.id}/follow/#{user.id}"
+      expect(response).to have_http_status(400)
+      expect(json['message']).to eq "User cannot follow themselves."
+    end
     describe 'when add same friend twice, nothing happen' do
       let(:user) { FactoryBot.create(:user, :has_friend) }
       let(:friend) { user.friendships.first }

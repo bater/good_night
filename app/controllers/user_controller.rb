@@ -3,6 +3,7 @@ class UserController < ApplicationController
   before_action :find_friend, only: [:follow, :unfollow]
 
   def follow
+    raise ApiException::BadRequest if @user == @friend
     @user.follow(@friend)
     render status: :no_content
   end
