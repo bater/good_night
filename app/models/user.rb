@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :sleeps
 
   def follow(friend)
-    self.friendships << friend
+    self.friendships << friend if friendships.exclude?(friend)
   end
 
   def unfollow(friend)

@@ -17,6 +17,15 @@ RSpec.describe "Users", type: :request do
       get "/user/#{user.id}/follow/999"
       expect(response).to have_http_status(404)
     end
+    describe 'user cannot add self as friend'
+    describe 'when add same friend twice, nothing happen' do
+      let(:user) { FactoryBot.create(:user, :has_friend) }
+      let(:friend) { user.friendships.first }
+      it "returns http success" do
+        get "/user/#{user.id}/follow/#{friend.id}"
+        expect(response).to have_http_status(:success)
+      end
+    end
   end
 
   describe "GET /unfollow" do

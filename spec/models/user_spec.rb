@@ -9,6 +9,11 @@ RSpec.describe User, type: :model do
     it "User can follow a friend" do
       expect(user.friendship_ids).to include friend.id
     end
+    it "nothing happen when add same friend twice" do
+      user.follow(friend)
+      expect(user.friendships.size).to eq 1
+      expect(user.friendships.include?(friend)).to eq true
+    end
   end
 
   describe "#unfollow" do
